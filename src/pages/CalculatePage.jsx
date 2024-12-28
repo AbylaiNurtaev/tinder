@@ -46,7 +46,7 @@ function CalculatePage() {
             step == 7 && 
             <Step7/>
         }
-        <Button className="w-[360px] h-[64px] rounded-[16px] mt-[150px]" onClick={() => setStep(prev => prev + 1)}>Далее</Button>
+        <Button className="w-[360px] h-[64px] rounded-[16px] absolute bottom-4" onClick={() => setStep(prev => prev + 1)}>Далее</Button>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import React from 'react'
 
 function Step2() {
   return (
-    <div className='flex flex-col justify-start items-center '>
+    <div className='flex flex-col justify-start items-center mb-[50px]'>
       <img className='mt-[50px] w-[125px]' src="/animations/ball.gif" alt="" />
       <p className='text-gray text-[20px] font-medium w-[268px] mt-[23px] text-center'>Какой твой гендер?</p>
       <div

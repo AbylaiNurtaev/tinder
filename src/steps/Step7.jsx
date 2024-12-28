@@ -3,7 +3,7 @@ import Button from '../components/Button'
 
 function Step7() {
   return (
-    <div className='flex flex-col justify-start items-center '>
+    <div className='flex flex-col justify-start items-center mb-[30px]'>
       <p className='text-gray text-[28px] font-semibold w-[360px] mt-[50px] text-left'>Зачем ты здесь?</p>
       <p className='text-gray text-[16px] font-medium w-[360px] text-left mt-4'>Какая твоя цель в отношениях бла бла бла бла бла</p>
       <div
