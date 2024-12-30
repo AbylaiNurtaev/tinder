@@ -29,6 +29,7 @@ function LogoPage() {
 
   return (
     <div className="flex flex-col justify-start items-center">
+      {initData ? initData : "dsadsa"}
       {telegramId ? (
         <p>Ваш Telegram ID: {telegramId}</p>
       ) : (
