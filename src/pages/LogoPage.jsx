@@ -4,33 +4,45 @@ import { useNavigate } from 'react-router-dom';
 
 function LogoPage() {
   const [telegramId, setTelegramId] = useState(null);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Получение initData из Telegram WebApp
-    const initData = window.Telegram.WebApp.initData;
-    if (!initData) {
-      console.error('initData is not available.');
-      return;
-    }
+    try {
+      // Проверяем, доступен ли объект Telegram
+      if (!window.Telegram || !window.Telegram.WebApp) {
+        setError('Telegram WebApp объект недоступен.');
+        return;
+      }
 
-    // Парсинг initData
-    const params = new URLSearchParams(initData);
-    const id = params.get('id'); // Извлекаем Telegram ID
-    setTelegramId(id);
+      const initData = window.Telegram.WebApp.initData;
 
-    // Проверка ID (можно добавить запрос к серверу здесь)
-    if (id) {
-      console.log('Telegram ID:', id);
-      // Логика проверки ID в базе может быть добавлена здесь
-      // Например, navigate('/dashboard') если ID уже зарегистрирован
+      if (!initData) {
+        setError('initData отсутствует.');
+        return;
+      }
+
+      // Парсинг initData
+      const params = new URLSearchParams(initData);
+      const id = params.get('id');
+
+      if (id) {
+        setTelegramId(id);
+        console.log('Telegram ID:', id);
+      } else {
+        setError('ID не найден в initData.');
+      }
+    } catch (e) {
+      console.error('Ошибка получения Telegram ID:', e);
+      setError('Произошла ошибка.');
     }
   }, []);
 
   return (
     <div className="flex flex-col justify-start items-center">
-      {initData ? initData : "dsadsa"}
-      {telegramId ? (
+      {error ? (
+        <p style={{ color: 'red' }}>{error}</p>
+      ) : telegramId ? (
         <p>Ваш Telegram ID: {telegramId}</p>
       ) : (
         <p>Загрузка...</p>
