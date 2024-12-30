@@ -9,7 +9,7 @@ export const useFilters = () => useContext(FiltersContext);
 // Провайдер контекста
 export const FiltersProvider = ({ children }) => {
     const [filters, setFilters] = useState({
-        brand: null, // Сохраняем выбранный бренд
+        name: ""
     });
 
     const updateFilter = (key, value) => {

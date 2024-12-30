@@ -19,15 +19,13 @@ function Step2() {
     if (type === 'year') setYear(value);
 
     // Обновляем данные в контексте
-    updateFilter({
-      ...filters,
+    updateFilter("birthday", {
       birthDay: type === 'day' ? value : day,
       birthMonth: type === 'month' ? value : month,
       birthYear: type === 'year' ? value : year,
     });
   };
 
-  console.log(filters)
 
   return (
     <div className='flex flex-col justify-start items-center mb-[110px]'>
@@ -41,7 +39,7 @@ function Step2() {
           className='w-[100px] h-[58px] rounded-[12px] text-[18px] px-2 focus:outline-none'
           style={{ background: '#f4f4f7' }}
         >
-          <option value="">День</option>
+          <option value="">{filters?.birthday?.birthDay || "День"}</option>
           {days.map((d) => (
             <option key={d} value={d}>
               {d.toString().padStart(2, '0')}
@@ -56,7 +54,7 @@ function Step2() {
           className='w-[100px] h-[58px] rounded-[12px] text-[18px] px-2 focus:outline-none'
           style={{ background: '#f4f4f7' }}
         >
-          <option value="">Месяц</option>
+          <option value="">{filters?.birthday?.birthMonth || "Месяц"}</option>
           {months.map((m) => (
             <option key={m} value={m}>
               {m.toString().padStart(2, '0')}
@@ -71,7 +69,7 @@ function Step2() {
           className='w-[120px] h-[58px] rounded-[12px] text-[18px] px-2 focus:outline-none'
           style={{ background: '#f4f4f7' }}
         >
-          <option value="">Год</option>
+          <option value="">{filters?.birthday?.birthYear || "Год"}</option>
           {years.map((y) => (
             <option key={y} value={y}>
               {y}
