@@ -10,6 +10,7 @@ function Step7() {
     updateFilter("relationshipGoal", goal); // Обновляем значение в контексте
   };
 
+  
   console.log(filters);
   
 

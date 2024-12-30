@@ -10,12 +10,14 @@ import Step7 from '../steps/Step7';
 import Button from '../components/Button';
 import { useFilters } from '../context/FiltersContext';
 import Step8 from '../steps/Step8';
+import axios from '../axios'
+import { useNavigate } from 'react-router-dom';
 
 function CalculatePage() {
   const [step, setStep] = useState(1);
-  const { filters } = useFilters(); // Получаем значения из контекста
+  const { filters, updateFilter } = useFilters(); // Получаем значения из контекста
   
-
+  const navigate = useNavigate()
   // Проверка, заполнен ли текущий шаг
   const isStepValid = () => {
     switch (step) {
@@ -37,6 +39,50 @@ function CalculatePage() {
         return true;
     }
   };  
+
+  const registration = () => {
+    axios.post('/register', {
+      name: filters?.name,
+      birthDay: filters?.birthday?.birthDay,
+      birthMonth: filters?.birthday?.birthMonth,
+      birthYear: filters?.birthday?.birthYear,
+      gender: filters?.gender,
+      height: filters?.height,
+      location: filters?.location,
+      wantToFind: filters?.preference,
+      goal: filters?.relationshipGoal,
+      telegramId: filters?.telegramId,
+    })
+    .then(res => {
+      if(res.data){
+        console.log('fsdafs', res.data);
+        updateFilter("userId",res.data._id)
+        localStorage.setItem('userId', res.data._id)
+        setStep(prev => prev + 1)
+      }
+    })
+    .catch((err) => {
+      alert("У вас уже есть аккаунт либо что то пошло не так")
+      navigate('/home')
+    })
+    
+  }
+
+  const congradulations = () => {
+    const userId = filters?.userId
+    axios.post(`/updateUserInfo/${userId}`, { about: filters?.about })
+    .then(res => res.data)
+    .then(data => {
+      if(data){
+        console.log(data);
+        
+        navigate('/readyLogin')
+      }else{
+        alert("Что то пошло не так")
+      }
+    })
+  }
+  
   
 
   return (
@@ -64,7 +110,10 @@ function CalculatePage() {
         className={`w-[360px] h-[64px] rounded-[16px] absolute bottom-4 ${
           !isStepValid() ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500"
         }`}
-        onClick={() => setStep((prev) => prev + 1)}
+        onClick={step !== 7 ? 
+          (step === 8 ? congradulations : () => setStep((prev) => prev + 1)) : 
+          registration}
+        
         disabled={!isStepValid()} // Блокируем кнопку, если шаг не валиден
       >
         Далее

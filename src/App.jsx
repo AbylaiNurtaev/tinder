@@ -3,6 +3,7 @@ import { FiltersProvider } from './context/FiltersContext';
 import LogoPage from './pages/LogoPage'
 import CalculatePage from './pages/CalculatePage';
 import { useEffect } from 'react';
+import ReadyLogin from './pages/ReadyLogin';
 
 function App() {
   useEffect(() => {
@@ -24,6 +25,7 @@ function App() {
           <Routes>
             <Route index path='/' element={<LogoPage/>}/>
             <Route path='/calculate' element={<CalculatePage/>}/>
+            <Route path='/readyLogin' element={<ReadyLogin/>}/>
           </Routes>
         </div>
       </FiltersProvider>

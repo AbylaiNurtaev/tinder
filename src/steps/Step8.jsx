@@ -1,9 +1,13 @@
 // Frontend: Step8 Component
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from '../axios';
+import { useFilters } from '../context/FiltersContext';
 
 function Step8() {
   const [photos, setPhotos] = useState([null, null, null]); // Array for photo previews
+
+  const { filters, updateFilter } = useFilters()
+
 
   const handleFileSelection = async (e, index) => {
     const file = e.target.files[0];
@@ -24,7 +28,7 @@ function Step8() {
       formData.append('photo', file);
 
       const response = await axios.post(
-        `/api/user/upload-photo?index=${index}&userId=USER_ID`, // Replace USER_ID dynamically
+        `/api/user/upload-photo?index=${index}&userId=${filters.userId}`, // Replace USER_ID dynamically
         formData,
         {
           headers: {
@@ -67,6 +71,7 @@ function Step8() {
         placeholder='Расскажи о себе'
         className='w-[361px] h-[207px] rounded-[12px] placeholder:text-gray outline-none p-4 mt-4'
         style={{ color: 'black', background: '#f4f4f7' }}
+        onChange={(e) => updateFilter("about", e.target.value)}
       ></textarea>
     </div>
   );
