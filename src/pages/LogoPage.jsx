@@ -7,9 +7,7 @@ function LogoPage() {
   const [userId, setUserId] = useState()
   useEffect(() => {
     const initData = window.Telegram.WebApp.initData;
-    axios.post('/api/validate-init-data', {
-      initData
-    })
+    axios.post('/api/validate-init-data', JSON.stringify({ initData: window.Telegram.WebApp.initData }))
     .then(res => res.data)
     .then(data => {
       if(data){
