@@ -63,7 +63,7 @@ function CalculatePage() {
     })
     .catch((err) => {
       alert("У вас уже есть аккаунт либо что то пошло не так")
-      navigate('/home')
+      navigate('/readyLogin')
     })
     
   }
