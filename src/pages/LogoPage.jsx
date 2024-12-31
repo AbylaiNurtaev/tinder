@@ -17,7 +17,8 @@ function LogoPage() {
       .post('/api/validate-init-data', { initData }) // Убираем JSON.stringify
       .then((res) => {
         console.log(res.data.user);
-        
+
+        localStorage.setItem('userId', res.data.user._id)
         setUser(res.data.user); // Устанавливаем userId из ответа
         updateFilter("telegramId", res.data.telegramId)
         
