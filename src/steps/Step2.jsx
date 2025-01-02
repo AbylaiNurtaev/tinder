@@ -3,7 +3,7 @@ import { useFilters } from '../context/FiltersContext';
 
 function Step2() {
   const { filters, updateFilter } = useFilters();
-  
+
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
   const months = Array.from({ length: 12 }, (_, i) => i + 1);
   const currentYear = new Date().getFullYear();
@@ -12,6 +12,9 @@ function Step2() {
   const [day, setDay] = useState(filters.birthDay || '');
   const [month, setMonth] = useState(filters.birthMonth || '');
   const [year, setYear] = useState(filters.birthYear || '');
+
+  // Состояние для загрузки изображения
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleDateChange = (type, value) => {
     if (type === 'day') setDay(value);
@@ -26,11 +29,31 @@ function Step2() {
     });
   };
 
-
   return (
     <div className='flex flex-col justify-start items-center mb-[110px]'>
-      <img className='mt-[50px] w-[125px]' src="/animations/birthday.gif" alt="" />
-      <p className='text-gray text-[20px] font-medium w-[268px] mt-[23px] text-center'>А когда у тебя день рождения?</p>
+      {/* Lazy-loading изображения */}
+      <div className="relative w-[125px] h-[125px] mt-[50px]">
+        {!imageLoaded && (
+          <div
+            className="absolute inset-0 bg-gray-300 animate-pulse"
+            style={{ background: '#f4f4f7' }}
+          />
+        )}
+        <img
+          className={`w-[125px] h-[125px] object-cover transition-opacity duration-500 ${
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          src="/animations/birthday.gif"
+          alt="Birthday animation"
+          loading="lazy"
+          onLoad={() => setImageLoaded(true)}
+          onError={() => console.error("Failed to load image")}
+        />
+      </div>
+
+      <p className='text-gray text-[20px] font-medium w-[268px] mt-[23px] text-center'>
+        А когда у тебя день рождения?
+      </p>
       <div className="flex mt-6 gap-3">
         {/* Dropdown для дней */}
         <select
@@ -46,7 +69,7 @@ function Step2() {
             </option>
           ))}
         </select>
-        
+
         {/* Dropdown для месяцев */}
         <select
           value={month}
