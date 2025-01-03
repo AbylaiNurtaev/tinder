@@ -16,25 +16,30 @@ import { useNavigate } from 'react-router-dom';
 function CalculatePage() {
   const [step, setStep] = useState(1);
   const { filters, updateFilter } = useFilters(); // Получаем значения из контекста
+
+  console.log(filters);
+  
   
   const navigate = useNavigate()
   // Проверка, заполнен ли текущий шаг
   const isStepValid = () => {
     switch (step) {
       case 1:
-        return !!filters.name; // Проверяем поле для Step1
+        return filters.name && filters.name.trim() !== ''; // Проверяем поле для Step1
       case 2:
-        return !!filters.birthday; // Проверяем выбранный гендер
+        return filters.birthday && Object.values(filters.birthday).every(val => val); // Проверяем выбранный гендер
       case 3:
-        return !!filters.gender; // Проверяем заполненную дату рождения
+        return filters.gender && filters.gender.trim() !== ''; // Проверяем заполненную дату рождения
       case 4:
-        return !!filters.height; // Добавьте проверку для Step4
+        return filters.height && !isNaN(filters.height) && Number(filters.height) > 0; // Добавьте проверку для Step4
       case 5:
-        return !!filters.location; // Проверяем геопозицию
+        return filters.location && filters.location.trim() !== ''; // Проверяем геопозицию
       case 6:
-        return !!filters.preference; // Проверяем, кого хочет найти
+        return filters.preference && filters.preference.trim() !== ''; // Проверяем, кого хочет найти
       case 7:
-        return !!filters.relationshipGoal; // Проверяем цель отношений
+        return filters.relationshipGoal && filters.relationshipGoal.trim() !== ''; // Проверяем цель отношений
+      case 8:
+        return filters.about && filters.about.trim() !== ''; // Проверяем поле about на последнем шаге
       default:
         return true;
     }
@@ -49,6 +54,7 @@ function CalculatePage() {
       gender: filters?.gender,
       height: filters?.height,
       location: filters?.location,
+      city: filters?.city,
       wantToFind: filters?.preference,
       goal: filters?.relationshipGoal,
       telegramId: filters?.telegramId,
@@ -65,7 +71,6 @@ function CalculatePage() {
       alert("У вас уже есть аккаунт либо что то пошло не так")
       navigate('/readyLogin')
     })
-    
   }
 
   const congradulations = () => {
@@ -82,8 +87,6 @@ function CalculatePage() {
       }
     })
   }
-  
-  
 
   return (
     <div className='flex flex-col justify-start items-center w-[100%]'>
@@ -107,7 +110,7 @@ function CalculatePage() {
 
       {/* Кнопка Далее */}
       <Button
-        className={`w-[360px] h-[64px] rounded-[16px] absolute bottom-4 ${
+        className={`w-[360px] h-[64px] rounded-[16px] absolute bottom-6 ${
           !isStepValid() ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500"
         }`}
         onClick={step !== 7 ? 

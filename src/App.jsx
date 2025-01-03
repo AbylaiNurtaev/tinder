@@ -4,6 +4,7 @@ import LogoPage from './pages/LogoPage'
 import CalculatePage from './pages/CalculatePage';
 import { useEffect } from 'react';
 import ReadyLogin from './pages/ReadyLogin';
+import EditPage from './pages/EditPage';
 
 function App() {
   useEffect(() => {
@@ -12,8 +13,12 @@ function App() {
     // Расширение до полного экрана
     tg.expand();
 
+    const userId = tg.initDataUnsafe.user?.id;
+    console.log('userId', userId);
     // Установка события завершения инициализации
     tg.ready();
+
+    
 
     return () => {
       tg.close(); // Закрытие веб-приложения (при необходимости)
@@ -26,6 +31,7 @@ function App() {
             <Route index path='/' element={<LogoPage/>}/>
             <Route path='/calculate' element={<CalculatePage/>}/>
             <Route path='/readyLogin' element={<ReadyLogin/>}/>
+            <Route path='/editProfile' element={<EditPage/>}/>
           </Routes>
         </div>
       </FiltersProvider>

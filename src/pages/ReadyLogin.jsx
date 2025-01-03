@@ -6,9 +6,11 @@ import { Pagination } from 'swiper/modules';
 import Navigation from '../components/Navigation';
 import Button from '../components/Button';
 import axios from '../axios';
+import { useNavigate } from 'react-router-dom';
 
 function ReadyLogin() {
     const [user, setUser] = useState();
+    const navigate = useNavigate()
 
     useEffect(() => {
         const userId = localStorage.getItem('userId');
@@ -76,13 +78,23 @@ function ReadyLogin() {
 </p>
                 <h1 className=' flex justify-start items-start text-[32px] text-white font-bold mt-[4px]' style={{ fontStyle: "italic" }}><span className='font-medium' style={{ fontStyle: "normal" }}>{user?.name || 'Имя не указано'}</span>, {user?.birthYear ? new Date().getFullYear() - user.birthYear : 'Возраст неизвестен'} <img src="/images/icons/Verifed.png" style={{ width: "28px", marginTop: "14px", marginLeft: "5px" }} alt="" /></h1>
                 <p className='text-gray-500 mt-[4px] text-white'>
-                    {user?.location || 'Местоположение неизвестно'}, {user?.height || 'Рост не указан'} см.
+                    {user?.city || 'Местоположение неизвестно'}, {user?.height || 'Рост не указан'} см.
                 </p>
-                <p style={{ color: "rgba(255, 255, 255, 0.8)", lineHeight: "125%" }} className='mt-[8px] font-semibold text-[16px]'>{user?.about || 'Описание отсутствует'}</p>
+                <p 
+  style={{ color: "rgba(255, 255, 255, 0.8)", lineHeight: "125%" }} 
+  className='mt-[8px] font-semibold text-[16px]'
+>
+  {user?.about
+    ? user.about.length > 140 
+      ? `${user.about.slice(0, 140)}...` // Обрезаем до 140 символов и добавляем ...
+      : user.about
+    : 'Описание отсутствует'}
+</p>
+
             </div>
 
             {/* Кнопки */}
-            <Button className='mt-[430px] gap-[10px] h-[64px] w-[345px]'>
+            <Button className='mt-[430px] gap-[10px] h-[64px] w-[345px]' onClick={() => navigate('/editProfile')}>
                 Редактировать
                 <img src='/images/icons/edit.svg' className='w-[32px]' alt='Редактировать' />
             </Button>

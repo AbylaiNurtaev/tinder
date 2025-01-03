@@ -10,9 +10,28 @@ function Step2() {
     updateFilter("gender", gender); // Обновляем значение в контексте
   };
 
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <div className='flex flex-col justify-start items-center mb-[50px]'>
-      <img className='mt-[50px] w-[125px]' src="/animations/ball.gif" loading='eager' alt="" />
+      <div className='relative w-[125px] h-[125px] mt-[50px]'>
+      {!imageLoaded && (
+          <div
+            className="absolute inset-0 bg-gray-300 animate-pulse"
+            style={{ background: '#f4f4f7' }}
+          />
+        )}
+        <img
+          className={`w-[125px] h-[125px] object-cover transition-opacity duration-500 ${
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          src="/animations/ball.gif"
+          alt="Birthday animation"
+          loading="lazy"
+          onLoad={() => setImageLoaded(true)}
+          onError={() => console.error("Failed to load image")}
+        />
+      </div>
       <p className='text-gray text-[20px] font-medium w-[268px] mt-[23px] text-center'>Какой твой гендер?</p>
       
       <div

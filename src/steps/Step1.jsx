@@ -15,6 +15,7 @@ function Step1() {
         className='w-[361px] h-[58px] rounded-[12px] mt-6 px-3 text-[32px]  focus:outline-none text-center'
         style={{background: "#f4f4f7"}}
         onChange={(e) => updateFilter("name", e.target.value)}
+        value={filters?.name}
         />
     </div>
   )
