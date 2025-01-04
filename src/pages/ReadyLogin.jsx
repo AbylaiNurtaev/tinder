@@ -96,7 +96,7 @@ function ReadyLogin() {
             {/* Кнопки */}
             <Button className='mt-[430px] gap-[10px] h-[64px] w-[345px]' onClick={() => navigate('/editProfile')}>
                 Редактировать
-                <img src='/images/icons/edit.svg' className='w-[32px]' alt='Редактировать' />
+                <img src='/images/icons/Edit.svg' className='w-[32px]' alt='Редактировать' />
             </Button>
             <button
                 className='rounded-[16px] w-[345px] h-[45px] mt-[11px] flex justify-center items-center'
