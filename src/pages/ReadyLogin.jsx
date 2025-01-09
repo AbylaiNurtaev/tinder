@@ -10,7 +10,8 @@ import { useNavigate } from 'react-router-dom';
 
 function ReadyLogin() {
     const [user, setUser] = useState();
-    const navigate = useNavigate()
+    const [isLoaded, setIsLoaded] = useState(false); // Состояние для загрузки
+    const navigate = useNavigate();
 
     useEffect(() => {
         const userId = localStorage.getItem('userId');
@@ -23,11 +24,19 @@ function ReadyLogin() {
                     console.log(data);
                     setUser(data);
                 }
+            })
+            .finally(() => {
+                // Устанавливаем isLoaded в true после загрузки
+                setTimeout(() => setIsLoaded(true), 100); // Плавный эффект
             });
     }, []);
 
     return (
-        <div className='flex flex-col justify-center items-center w-full p-[16px]'>
+        <div
+            className={`flex flex-col justify-center items-center w-full p-[16px] transition-opacity duration-500 ${
+                isLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+        >
             <div className='flex justify-between items-center w-full max-w-[361px] mt-[5px]'>
                 <h3 className='text-gray font-semibold text-[28px]'>Твоя карточка</h3>
                 <button
@@ -53,14 +62,14 @@ function ReadyLogin() {
                     >
                         {user.photos.map((photo, index) => (
                             <SwiperSlide key={index}>
-<div className="relative w-full h-[403px] rounded-[8px] overflow-hidden">
-    <img
-        className="w-full h-full object-cover"
-        src={photo}
-        alt={`Фото ${index + 1}`}
-    />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-</div>
+                                <div className="relative w-full h-[403px] rounded-[8px] overflow-hidden">
+                                    <img
+                                        className="w-full h-full object-cover"
+                                        src={photo}
+                                        alt={`Фото ${index + 1}`}
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                                </div>
                             </SwiperSlide>
                         ))}
                     </Swiper>
@@ -73,24 +82,27 @@ function ReadyLogin() {
 
             {/* Информация о пользователе */}
             <div className='flex flex-col w-[345px] text-left z-10 ml-3 absolute top-[250px] pointer-events-none'>
-            <p className='bg-red-500 text-white rounded-[16px] px-[12px] py-1 font-medium min-w-[100px] max-w-fit flex justify-center items-center'>
-    {user?.goal || 'Цель не указана'}
-</p>
-                <h1 className=' flex justify-start items-start text-[32px] text-white font-bold mt-[4px]' style={{ fontStyle: "italic" }}><span className='font-medium' style={{ fontStyle: "normal" }}>{user?.name || 'Имя не указано'}</span>, {user?.birthYear ? new Date().getFullYear() - user.birthYear : 'Возраст неизвестен'} <img src="/images/icons/Verifed.png" style={{ width: "28px", marginTop: "14px", marginLeft: "5px" }} alt="" /></h1>
+                <p className='bg-red-500 text-white rounded-[16px] px-[12px] py-1 font-medium min-w-[100px] max-w-fit flex justify-center items-center'>
+                    {user?.goal || 'Цель не указана'}
+                </p>
+                <h1 className='flex justify-start items-start text-[32px] text-white font-bold mt-[4px]' style={{ fontStyle: "italic" }}>
+                    <span className='font-medium' style={{ fontStyle: "normal" }}>{user?.name || 'Имя не указано'}</span>, 
+                    {user?.birthYear ? new Date().getFullYear() - user.birthYear : 'Возраст неизвестен'} 
+                    <img src="/images/icons/Verifed.png" style={{ width: "28px", marginTop: "14px", marginLeft: "5px" }} alt="" />
+                </h1>
                 <p className='text-gray-500 mt-[4px] text-white'>
                     {user?.city || 'Местоположение неизвестно'}, {user?.height || 'Рост не указан'} см.
                 </p>
-                <p 
-  style={{ color: "rgba(255, 255, 255, 0.8)", lineHeight: "125%" }} 
-  className='mt-[8px] font-semibold text-[16px]'
->
-  {user?.about
-    ? user.about.length > 140 
-      ? `${user.about.slice(0, 140)}...` // Обрезаем до 140 символов и добавляем ...
-      : user.about
-    : 'Описание отсутствует'}
-</p>
-
+                <p
+                    style={{ color: "rgba(255, 255, 255, 0.8)", lineHeight: "125%" }}
+                    className='mt-[8px] font-semibold text-[16px]'
+                >
+                    {user?.about
+                        ? user.about.length > 140
+                            ? `${user.about.slice(0, 140)}...`
+                            : user.about
+                        : 'Описание отсутствует'}
+                </p>
             </div>
 
             {/* Кнопки */}

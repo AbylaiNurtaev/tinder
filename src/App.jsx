@@ -5,6 +5,8 @@ import CalculatePage from './pages/CalculatePage';
 import { useEffect } from 'react';
 import ReadyLogin from './pages/ReadyLogin';
 import EditPage from './pages/EditPage';
+import LikesPage from './pages/LikesPage';
+import Layout from './components/Layout';
 
 function App() {
   useEffect(() => {
@@ -25,16 +27,22 @@ function App() {
     };
   }, []);
   return (
-      <FiltersProvider>
-        <div className="App flex justify-center items-center">
-          <Routes>
-            <Route index path='/' element={<LogoPage/>}/>
-            <Route path='/calculate' element={<CalculatePage/>}/>
-            <Route path='/readyLogin' element={<ReadyLogin/>}/>
-            <Route path='/editProfile' element={<EditPage/>}/>
-          </Routes>
-        </div>
-      </FiltersProvider>
+    <FiltersProvider>
+      <div className="App flex justify-center items-center">
+        <Routes>
+          {/* Главные страницы без навигации */}
+          <Route path="/" element={<LogoPage />} />
+          <Route path="/calculate" element={<CalculatePage />} />
+
+          {/* Страницы с навигацией */}
+          <Route path="/" element={<Layout />}>
+            <Route path="/readyLogin" element={<ReadyLogin />} />
+            <Route path="/editProfile" element={<EditPage />} />
+            <Route path="/likes" element={<LikesPage />} />
+          </Route>
+        </Routes>
+      </div>
+    </FiltersProvider>
   );
 }
 

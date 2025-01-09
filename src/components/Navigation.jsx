@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Navigation() {
     const [currentPage, setCurrentPage] = useState(null); // Текущее состояние страницы
+    const navigate = useNavigate()
 
     return (
         <div className='w-full h-[60px] flex justify-between items-center absolute bottom-0 bg-white z-10' style={{ borderTop: "1px solid #f2dddf" }}>
@@ -10,7 +12,7 @@ function Navigation() {
                 <img
                     className='w-[28px]'
                     src={currentPage === 'heart' ? '/images/icons/heart_red.png' : '/images/icons/heart.png'}
-                    onClick={() => setCurrentPage('heart')}
+                    onClick={() => {setCurrentPage('heart'); navigate('/likes')}}
                     alt="Heart Icon"
                 />
             </div>
@@ -20,13 +22,13 @@ function Navigation() {
                 <img
                     className='w-[28px]'
                     src={currentPage === 'tinder' ? '/images/icons/tinder_red.svg' : '/images/icons/tinder.png'}
-                    onClick={() => setCurrentPage('tinder')}
+                    onClick={() => {setCurrentPage('tinder')}}
                     alt="Tinder Icon"
                 />
             </div>
             
             {/* Chat */}
-            <div className='flex justify-center items-center w-[100%]'>
+            <div className='flex justify-center items-center w-[100%]' onClick={() => navigate('/likes')}>
                 <img
                     className='w-[28px]'
                     src={currentPage === 'chat' ? '/images/icons/chat_red.png' : '/images/icons/chat.png'}
@@ -40,7 +42,7 @@ function Navigation() {
                 <img
                     className='w-[28px]'
                     src={currentPage === 'user' ? '/images/icons/user_red.png' : '/images/icons/user.png'}
-                    onClick={() => setCurrentPage('user')}
+                    onClick={() => {setCurrentPage('user'); navigate('/readyLogin')}}
                     alt="User Icon"
                 />
             </div>

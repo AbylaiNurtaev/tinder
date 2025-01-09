@@ -14,8 +14,9 @@ function EditPage() {
             .then((data) => {
                 if (data) {
                     console.log(data);
-                    setUser(data); // Устанавливаем пользователя из ответа
-                    setPhotos(data?.photos);
+                    setUser(data); 
+                    // Убедимся, что есть хотя бы одна пустая ячейка
+                    setPhotos(data?.photos?.length ? [...data.photos, null] : [null]);
                 }
             });
     }, []);
@@ -26,20 +27,25 @@ function EditPage() {
     const handleFileSelection = async (e, index) => {
         const file = e.target.files[0];
         if (!file) return;
-
+    
         const formData = new FormData();
         formData.append('photo', file);
-
+    
         const userId = localStorage.getItem('userId');
-
+    
         try {
             const imageUrl = URL.createObjectURL(file);
             setPhotos((prevPhotos) => {
                 const newPhotos = [...prevPhotos];
                 newPhotos[index] = imageUrl;
+                // Убедимся, что есть хотя бы одна пустая ячейка
+                if (!newPhotos.includes(null)) {
+                    newPhotos.push(null);
+                }
                 return newPhotos;
             });
-            const response = await axios.post(`/api/user/upload-photo?userId=${userId}&index=${index}`, formData, {
+    
+            await axios.post(`/api/user/upload-photo?userId=${userId}&index=${index}`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
         } catch (error) {
@@ -83,35 +89,35 @@ function EditPage() {
             </h3>
 
             <div className='flex justify-center items-start gap-1 mt-[24px]'>
-                {photos.map((photo, index) => (
-                    <label key={index} htmlFor={`image${index}`}>
-                        <div
-                            className='w-[117px] h-[191px] flex justify-center items-center rounded-[12px]'
-                            style={{ background: '#f4f4f7' }}
-                        >
-                            {photo ? (
-                                <img
-                                    className='w-full h-full object-cover rounded-[12px]'
-                                    src={photo}
-                                    alt='Uploaded'
-                                />
-                            ) : (
-                                <img
-                                    className='w-[30px]'
-                                    src='/images/ui/plus.png'
-                                    alt='+'
-                                />
-                            )}
-                        </div>
-                        <input
-                            type='file'
-                            hidden={true}
-                            id={`image${index}`}
-                            onChange={(e) => handleFileSelection(e, index)}
-                            accept='.png, .jpg'
-                        />
-                    </label>
-                ))}
+            {[...photos, null].map((photo, index) => (
+                <label key={index} htmlFor={`image${index}`}>
+                    <div
+                        className='w-[117px] h-[191px] flex justify-center items-center rounded-[12px]'
+                        style={{ background: '#f4f4f7' }}
+                    >
+                        {photo ? (
+                            <img
+                                className='w-full h-full object-cover rounded-[12px]'
+                                src={photo}
+                                alt='Uploaded'
+                            />
+                        ) : (
+                            <img
+                                className='w-[30px]'
+                                src='/images/ui/plus.png'
+                                alt='+'
+                            />
+                        )}
+                    </div>
+                    <input
+                        type='file'
+                        hidden={true}
+                        id={`image${index}`}
+                        onChange={(e) => handleFileSelection(e, index)}
+                        accept='.png, .jpg'
+                    />
+                </label>
+            ))}
             </div>
 
             <p className='mt-[13px]'>Имя</p>
