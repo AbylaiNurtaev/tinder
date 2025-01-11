@@ -11,9 +11,11 @@ import Layout from './components/Layout';
 function App() {
   useEffect(() => {
     const tg = window.Telegram.WebApp;
+    
 
     // Расширение до полного экрана
     tg.expand();
+    tg.requestFullscreen();
 
     const userId = tg.initDataUnsafe.user?.id;
     console.log('userId', userId);
