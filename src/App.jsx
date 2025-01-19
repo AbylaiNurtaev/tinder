@@ -16,7 +16,7 @@ function App() {
 
     // Расширение до полного экрана
     tg.expand();
-    // tg.requestFullscreen();
+    tg.requestFullscreen();
 
     const userId = tg.initDataUnsafe.user?.id;
     console.log('userId', userId);
