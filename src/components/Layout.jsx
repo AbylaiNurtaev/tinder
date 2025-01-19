@@ -4,7 +4,7 @@ import Navigation from './Navigation'
 
 function Layout() {
   return (
-    <div className='flex justify-center items-center h-[100%]' style={{ overflowY: "hidden" }}>
+    <div className='flex justify-center items-center' style={{ overflowY: "hidden" }}>
       <Outlet></Outlet>
       <Navigation></Navigation>
     </div>
