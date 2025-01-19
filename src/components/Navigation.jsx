@@ -21,8 +21,8 @@ function Navigation() {
             <div className='flex justify-center items-center w-[100%]'>
                 <img
                     className='w-[28px]'
-                    src={currentPage === 'tinder' ? '/images/icons/tinder_red.svg' : '/images/icons/tinder.png'}
-                    onClick={() => {setCurrentPage('tinder')}}
+                    src={currentPage === 'find' ? '/images/icons/tinder_red.svg' : '/images/icons/tinder.png'}
+                    onClick={() => {setCurrentPage('find'); navigate('/find')}}
                     alt="Tinder Icon"
                 />
             </div>

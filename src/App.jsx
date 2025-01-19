@@ -7,6 +7,7 @@ import ReadyLogin from './pages/ReadyLogin';
 import EditPage from './pages/EditPage';
 import LikesPage from './pages/LikesPage';
 import Layout from './components/Layout';
+import FindPage from './pages/FindPage';
 
 function App() {
   useEffect(() => {
@@ -41,6 +42,7 @@ function App() {
             <Route path="/readyLogin" element={<ReadyLogin />} />
             <Route path="/editProfile" element={<EditPage />} />
             <Route path="/likes" element={<LikesPage />} />
+            <Route path="/find" element={<FindPage />} />
           </Route>
         </Routes>
       </div>
