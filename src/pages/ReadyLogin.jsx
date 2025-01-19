@@ -37,7 +37,7 @@ function ReadyLogin() {
                 isLoaded ? 'opacity-100' : 'opacity-0'
             }`}
         >
-            <div className='flex justify-between items-center w-full max-w-[361px] mt-[5px]'>
+            <div className='flex justify-between items-center w-full max-w-[361px] mt-[105px]'>
                 <h3 className='text-gray font-semibold text-[28px]'>Твоя карточка</h3>
                 <button
                     className='rounded-[16px] w-[45px] h-[45px] flex justify-center items-center'
@@ -51,7 +51,7 @@ function ReadyLogin() {
             </div>
 
             {/* Слайдер фотографий */}
-            <div className='w-full max-w-[345px] mt-[-70px] absolute z-0'>
+            <div className='w-full max-w-[345px] mt-[30px]  z-0'>
                 {user?.photos?.length > 0 ? (
                     <Swiper
                         modules={[Pagination]}
@@ -81,7 +81,7 @@ function ReadyLogin() {
             </div>
 
             {/* Информация о пользователе */}
-            <div className='flex flex-col w-[345px] text-left z-10 ml-3 absolute top-[250px] pointer-events-none'>
+            <div className='flex flex-col w-[345px] text-left z-10 ml-3 absolute top-[350px] pointer-events-none'>
                 <p className='bg-red-500 text-white rounded-[16px] px-[12px] py-1 font-medium min-w-[100px] max-w-fit flex justify-center items-center'>
                     {user?.goal || 'Цель не указана'}
                 </p>
@@ -106,12 +106,12 @@ function ReadyLogin() {
             </div>
 
             {/* Кнопки */}
-            <Button className='mt-[430px] gap-[10px] h-[64px] w-[345px]' onClick={() => navigate('/editProfile')}>
+            <Button className='absolute bottom-[155px] gap-[10px] h-[64px] w-[345px]' onClick={() => navigate('/editProfile')}>
                 Редактировать
                 <img src='/images/icons/Edit.svg' className='w-[32px]' alt='Редактировать' />
             </Button>
             <button
-                className='rounded-[16px] w-[345px] h-[45px] mt-[11px] flex justify-center items-center'
+                className='rounded-[16px] w-[345px] h-[45px] absolute bottom-[100px] flex justify-center items-center'
                 style={{
                     boxShadow: '0 0 1px 0 rgba(201, 201, 201, 0.14), 0 2px 2px 0 rgba(201, 201, 201, 0.12), 0 4px 2px 0 rgba(201, 201, 201, 0.07), 0 7px 3px 0 rgba(201, 201, 201, 0.02), inset 0 -3px 11px 0 #e7e7e7',
                     border: '1px solid #f2dddf',
