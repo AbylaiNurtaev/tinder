@@ -12,7 +12,7 @@ import FindPage from './pages/FindPage';
 function App() {
   useEffect(() => {
     const tg = window.Telegram.WebApp;
-    // tg.requestFullscreen();
+    tg.requestFullscreen();
 
     const userId = tg.initDataUnsafe.user?.id;
     console.log('userId', userId);
