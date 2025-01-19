@@ -6,7 +6,7 @@ function Navigation() {
     const navigate = useNavigate()
 
     return (
-        <div className='w-full h-[60px] mb-4 flex justify-between items-center absolute bottom-0 bg-white z-10' style={{ borderTop: "1px solid #f2dddf" }}>
+        <div className='w-full h-[60px] pb-4 flex justify-between items-center absolute bottom-0 bg-white z-10' style={{ borderTop: "1px solid #f2dddf" }}>
             {/* Heart */}
             <div className='flex justify-center items-center w-[100%]'>
                 <img

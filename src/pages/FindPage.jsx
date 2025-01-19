@@ -31,7 +31,7 @@ function FindPage() {
             filters == true &&
             <Filters closePopup={() => setFilters(false)}></Filters>
         }
-        <div className="flex justify-between items-center w-[100%] mt-[60px]">
+        <div className="flex justify-between items-center w-[100%] mt-[90px]">
             <img src="/images/ui/logo.svg" className='w-[125px]' alt="" />
             <img src="/images/icons/filterBtn.svg" onClick={() => setFilters(true)} className='w-[127px]' alt="" />
         </div>
@@ -91,7 +91,7 @@ function FindPage() {
             </div>
 
             <div className="flex justify-between items-center absolute bottom-20 w-[90%]" >
-                <img src="/images/ui/gobackBtn.svg" className='w-[70px]' alt="" />
+                <img src="/images/ui/primary button (1).png" className='w-[70px]' alt="" />
                 <img src="/images/ui/noBtn.svg" className='w-[100px]' alt="" />
                 <img src="/images/ui/goBtn.svg" className='w-[100px]' alt="" />
                 <img src="/images/ui/starBtn.svg" className='w-[70px]' alt="" />

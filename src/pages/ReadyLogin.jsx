@@ -81,7 +81,7 @@ function ReadyLogin() {
             </div>
 
             {/* Информация о пользователе */}
-            <div className='flex flex-col w-[345px] text-left z-10 ml-3 absolute top-[350px] pointer-events-none'>
+            <div className='flex flex-col w-[345px] text-left z-10 ml-3 absolute top-[400px] pointer-events-none'>
                 <p className='bg-red-500 text-white rounded-[16px] px-[12px] py-1 font-medium min-w-[100px] max-w-fit flex justify-center items-center'>
                     {user?.goal || 'Цель не указана'}
                 </p>
