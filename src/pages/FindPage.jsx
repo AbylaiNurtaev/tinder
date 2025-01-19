@@ -33,7 +33,7 @@ function FindPage() {
         }
         <div className="flex justify-between items-center w-[100%] mt-[90px]">
             <img src="/images/ui/logo.svg" className='w-[125px]' alt="" />
-            <img src="/images/icons/filterBtn.svg" onClick={() => setFilters(true)} className='w-[127px]' alt="" />
+            <img src="/images/ui/filter.png" onClick={() => setFilters(true)} className='w-[127px]' alt="" />
         </div>
 
         <div className='w-full max-w-[345px] bottom-[160px] absolute z-0'>
@@ -92,9 +92,9 @@ function FindPage() {
 
             <div className="flex justify-between items-center absolute bottom-20 w-[90%]" >
                 <img src="/images/ui/primary button (1).png" className='w-[70px]' alt="" />
-                <img src="/images/ui/noBtn.svg" className='w-[100px]' alt="" />
-                <img src="/images/ui/goBtn.svg" className='w-[100px]' alt="" />
-                <img src="/images/ui/starBtn.svg" className='w-[70px]' alt="" />
+                <img src="/images/ui/closeBtn.png" className='w-[100px]' alt="" />
+                <img src="/images/ui/okBtn.png" className='w-[100px]' alt="" />
+                <img src="/images/ui/StarBtn.png" className='w-[70px]' alt="" />
 
             </div>
 
