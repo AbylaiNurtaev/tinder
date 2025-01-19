@@ -31,12 +31,12 @@ function FindPage() {
             filters == true &&
             <Filters closePopup={() => setFilters(false)}></Filters>
         }
-        <div className="flex justify-between items-center w-[100%] mt-[30px]">
+        <div className="flex justify-between items-center w-[100%] mt-[60px]">
             <img src="/images/ui/logo.svg" className='w-[125px]' alt="" />
             <img src="/images/icons/filterBtn.svg" onClick={() => setFilters(true)} className='w-[127px]' alt="" />
         </div>
 
-        <div className='w-full max-w-[345px] top-[100px] absolute z-0'>
+        <div className='w-full max-w-[345px] bottom-[160px] absolute z-0'>
                 {user?.photos?.length > 0 ? (
                     <Swiper
                         modules={[Pagination]}
@@ -47,7 +47,7 @@ function FindPage() {
                     >
                         {user.photos.map((photo, index) => (
                             <SwiperSlide key={index}>
-                                <div className="relative w-full h-[433px] rounded-[8px] overflow-hidden">
+                                <div className="relative w-full h-[533px] rounded-[8px] overflow-hidden">
                                     <img
                                         className="w-full h-full object-cover"
                                         src={photo}
@@ -66,7 +66,7 @@ function FindPage() {
             </div>
 
             {/* Информация о пользователе */}
-            <div className='flex flex-col w-[345px] text-left z-10 ml-3 absolute top-[350px] pointer-events-none'>
+            <div className='flex flex-col w-[345px] text-left z-10 ml-3 absolute bottom-[190px] pointer-events-none'>
                 <p className='bg-red-500 text-white rounded-[16px] px-[12px] py-1 font-medium min-w-[100px] max-w-fit flex justify-center items-center'>
                     {user?.goal || 'Цель не указана'}
                 </p>
