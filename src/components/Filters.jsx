@@ -16,7 +16,7 @@ function Filters({ closePopup }) {
         setDistance(newValue);
       };
   return (
-    <div className='flex flex-col justify-start items-center absolute h-[100%] w-[100%] mt-[80px] bg-white z-50' style={{ overflowY: "hidden" }}>
+    <div className='flex flex-col justify-start items-center absolute  w-[100%] mt-[80px] bg-white z-50' style={{ height: "calc(100% - 80px)" }} >
         <div className="w-[95%] flex justify-start items-center gap-[8px] mt-[20px]">
             <img onClick={() => closePopup()} src="/images/icons/back arrow.png" className='w-[50px]' alt="" />
             <p className='font-sans text-gray text-[28px] font-semibold'>Фильтры</p>
