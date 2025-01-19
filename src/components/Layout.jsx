@@ -4,7 +4,7 @@ import Navigation from './Navigation'
 
 function Layout() {
   return (
-    <div className='flex justify-center items-center'>
+    <div className='flex justify-center items-center h-[100%]'>
       <Outlet></Outlet>
       <Navigation></Navigation>
     </div>

@@ -16,7 +16,7 @@ function Filters({ closePopup }) {
         setDistance(newValue);
       };
   return (
-    <div className='flex flex-col justify-start items-center absolute h-[100%] w-[100%] bg-white z-50'>
+    <div className='flex flex-col justify-start items-center absolute h-[100%] w-[100%] mt-[80px] bg-white z-50'>
         <div className="w-[95%] flex justify-start items-center gap-[8px] mt-[20px]">
             <img onClick={() => closePopup()} src="/images/icons/back arrow.png" className='w-[50px]' alt="" />
             <p className='font-sans text-gray text-[28px] font-semibold'>Фильтры</p>
@@ -92,20 +92,20 @@ function Filters({ closePopup }) {
               }}
             />
 
-        <p className='font-sans text-gray w-[90%] text-[16px] mt-[30px]'>Гендер</p>
+        <p className='font-sans text-gray w-[90%] text-[16px] mt-[10px]'>Гендер</p>
         <div className="flex justify-between items-center w-[90%] mt-4">
             <button className='w-[110px] rounded-[12px] h-[52px]' onClick={() => setGender("Мужчина")} style={ gender ==  "Мужчина" ? { background: "#f4f4f7", border: '1.50px solid #e53935' } : { background: "#f4f4f7" }}>Мужчина</button>
             <button className='w-[110px] rounded-[12px] h-[52px]' onClick={() => setGender("Женщина")} style={ gender ==  "Женщина" ? { background: "#f4f4f7", border: '1.50px solid #e53935' } : { background: "#f4f4f7" }}>Женщина</button>
             <button className='w-[110px] rounded-[12px] h-[52px]' onClick={() => setGender("Другое")} style={ gender ==  "Другое" ? { background: "#f4f4f7", border: '1.50px solid #e53935' } : { background: "#f4f4f7" }}>Другое</button>
         </div>
-        <p className='font-sans text-gray w-[90%] text-[16px] mt-[30px]'>Статус</p>
+        <p className='font-sans text-gray w-[90%] text-[16px] mt-[10px]'>Статус</p>
         <div className="flex flex-col justify-start items-center w-[90%] gap-[8px] mt-4">
             <button className='w-[100%] rounded-[16px] h-[52px]' onClick={() => setActive("Общение без конкретики")} style={ active ==  "Общение без конкретики" ? { background: "#ed3144", color: "#f4f4f7", transition: ".5s" } : { background: "#f4f4f7", color: "#ed3144", transition: ".5" }}>Общение без конкретики</button>
             <button className='w-[100%] rounded-[16px] h-[52px]' onClick={() => setActive("Серьезные отношения")} style={ active ==  "Серьезные отношения" ? { background: "#ed3144", color: "#f4f4f7", transition: ".5s" } : { background: "#f4f4f7", color: "#ed3144", transition: ".5" }}>Серьезные отношения</button>
             <button className='w-[100%] rounded-[16px] h-[52px]' onClick={() => setActive("Дружба")} style={ active ==  "Дружба" ? { background: "#ed3144", color: "#f4f4f7", transition: ".5s" } : { background: "#f4f4f7", color: "#ed3144", transition: ".5" }}>Дружба</button>
             <button className='w-[100%] rounded-[16px] h-[52px]' onClick={() => setActive("Свидание")} style={ active ==  "Свидание" ? { background: "#ed3144", color: "#f4f4f7", transition: ".5s" } : { background: "#f4f4f7", color: "#ed3144", transition: ".5" }}>Свидание</button>
         </div>
-        <Button className="w-[90%] h-[64px] mt-[31px]">Сохранить</Button>
+        <Button className="w-[90%] h-[64px] mt-[11px]">Сохранить</Button>
     </div>
   )
 }

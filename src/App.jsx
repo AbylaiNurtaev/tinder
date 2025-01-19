@@ -36,11 +36,11 @@ function App() {
           {/* Главные страницы без навигации */}
           <Route path="/" element={<LogoPage />} />
           <Route path="/calculate" element={<CalculatePage />} />
+          <Route path="/editProfile" element={<EditPage />} />
 
           {/* Страницы с навигацией */}
           <Route path="/" element={<Layout />}>
             <Route path="/readyLogin" element={<ReadyLogin />} />
-            <Route path="/editProfile" element={<EditPage />} />
             <Route path="/likes" element={<LikesPage />} />
             <Route path="/find" element={<FindPage />} />
           </Route>

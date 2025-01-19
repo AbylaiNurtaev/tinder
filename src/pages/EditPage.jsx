@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../axios';
 import Button from '../components/Button'
+import Navigation from '../components/Navigation';
 function EditPage() {
     const [user, setUser] = useState({});
     const [photos, setPhotos] = useState([null, null, null]);
@@ -16,7 +17,7 @@ function EditPage() {
                     console.log(data);
                     setUser(data); 
                     // Убедимся, что есть хотя бы одна пустая ячейка
-                    setPhotos(data?.photos?.length ? [...data.photos, null] : [null]);
+                    setPhotos(data?.photos?.length ? [...data.photos] : [null]);
                 }
             });
     }, []);
@@ -39,9 +40,9 @@ function EditPage() {
                 const newPhotos = [...prevPhotos];
                 newPhotos[index] = imageUrl;
                 // Убедимся, что есть хотя бы одна пустая ячейка
-                if (!newPhotos.includes(null)) {
-                    newPhotos.push(null);
-                }
+                // if (!newPhotos.includes(null)) {
+                //     newPhotos.push(null);
+                // }
                 return newPhotos;
             });
     
@@ -75,7 +76,7 @@ function EditPage() {
     };
 
     return (
-        <div className='flex flex-col justify-center items-start w-[360px] mb-[20px]'>
+        <div className='flex flex-col justify-center items-start w-[360px] mb-[20px] mt-[80px]'>
             <h3
                 onClick={() => navigate(-1)}
                 className='text-gray font-semibold text-[24px] flex justify-center items-center whitespace-nowrap gap-2 mt-[5px]'
@@ -89,7 +90,7 @@ function EditPage() {
             </h3>
 
             <div className='flex justify-center items-start gap-1 mt-[24px]'>
-            {[...photos, null].map((photo, index) => (
+            {[...photos].map((photo, index) => (
                 <label key={index} htmlFor={`image${index}`}>
                     <div
                         className='w-[117px] h-[191px] flex justify-center items-center rounded-[12px]'

@@ -26,7 +26,7 @@ function FindPage() {
 
 
   return (
-    <div className='w-[90vw] flex flex-col justify-start items-center'>
+    <div className='w-[90vw] flex flex-col justify-start items-center' style={{ overflowY: "hidden" }}>
         {
             filters == true &&
             <Filters closePopup={() => setFilters(false)}></Filters>
