@@ -37,7 +37,7 @@ function ReadyLogin() {
                 isLoaded ? 'opacity-100' : 'opacity-0'
             }`}
         >
-            <div className='flex justify-between items-center w-full max-w-[361px] mt-[105px]'>
+            <div className='flex justify-between items-center w-full min-w-[343px] mt-[105px]'>
                 <h3 className='text-gray font-semibold text-[28px]'>Твоя карточка</h3>
                 <button
                     className='rounded-[16px] w-[45px] h-[45px] flex justify-center items-center'
