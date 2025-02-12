@@ -38,8 +38,8 @@ function FullChat() {
       axios
         .post(`${API_URL}/auth/getUserById`, { userId: userId })
         .then((res) => {
+          console.log(res);
           if (res.data) {
-            console.log(res.data);
             setUser(res.data);
           }
         });
