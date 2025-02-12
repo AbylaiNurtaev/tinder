@@ -9,6 +9,8 @@ import Loading from "../../components/Loading";
 // const socket = io("http://localhost:3001");
 const socket = io("wss://tinder-back-production.up.railway.app");
 
+const API_URL = "https://tinder-back-production.up.railway.app";
+
 function FullChat() {
   const { userId } = useParams();
   const id = localStorage.getItem("id");
@@ -33,13 +35,15 @@ function FullChat() {
 
   useEffect(() => {
     if (id && userId) {
-      axios.post("/auth/getUserById", { userId: userId }).then((res) => {
-        if (res.data) {
-          setUser(res.data);
-        }
-      });
       axios
-        .post("/getMessages", {
+        .post(`${API_URL}/auth/getUserById`, { userId: userId })
+        .then((res) => {
+          if (res.data) {
+            setUser(res.data);
+          }
+        });
+      axios
+        .post(`${API_URL}/getMessages`, {
           userId: id,
           receiverId: userId,
         })
