@@ -34,6 +34,7 @@ function FullChat() {
   }, [id]);
 
   useEffect(() => {
+    console.log("id:", id, "userId:", userId);
     if (id && userId) {
       axios
         .post(`${API_URL}/auth/getUserById`, { userId: userId })
