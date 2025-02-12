@@ -13,7 +13,7 @@ const API_URL = "https://tinder-back-production.up.railway.app";
 
 function FullChat() {
   const { userId } = useParams();
-  const id = localStorage.getItem("id");
+  const id = localStorage.getItem("userId");
 
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState("");
