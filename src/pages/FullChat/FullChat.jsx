@@ -39,6 +39,7 @@ function FullChat() {
         .post(`${API_URL}/auth/getUserById`, { userId: userId })
         .then((res) => {
           if (res.data) {
+            console.log(res.data);
             setUser(res.data);
           }
         });
