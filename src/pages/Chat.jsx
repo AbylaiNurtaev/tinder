@@ -54,8 +54,8 @@ function Chat() {
                 </div>
               ))}
           </div>
-          {/* <ChatCard showDelivered={true} userId={"67a0dcf645020c260d163b19"} /> */}
-          <ChatCard showDelivered={true} userId={"67a0dc3b45020c260d163b0c"} />
+          <ChatCard showDelivered={true} userId={"67a0dcf645020c260d163b19"} />
+          {/* <ChatCard showDelivered={true} userId={"67a0dc3b45020c260d163b0c"} /> */}
         </>
       )}
     </div>
