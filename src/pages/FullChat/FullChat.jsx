@@ -6,7 +6,7 @@ import TopChat from "../../components/TopChat";
 import "./FullChat.css";
 
 // const socket = io("http://localhost:3001");
-const socket = io("https://tinder-back-production.up.railway.app");
+const socket = io("wss://tinder-back-production.up.railway.app");
 
 function FullChat() {
   const { userId } = useParams();
